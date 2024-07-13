@@ -121,21 +121,28 @@ export const login = asyncHandler(async (req, res) => {
     "-password -refreshToken"
   );
 
-  return res
+  res
+    .status(200)
     .cookie("accessToken", accessToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
       secure: true,
-      sameSite: "lax",
+      sameSite: "none", // Change to "none" for cross-origin requests
     })
-    .cookie("refreshToken", refreshToken, option)
-    .status(200)
+    .cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: true,
+      sameSite: "none", // Change to "none" for cross-origin requests
+    })
+    .header("Access-Control-Allow-Credentials", "true")
     .json({
       success: true,
-      message: "Login Successfull !!!",
+      message: "Login Successful !!!",
       user: userData,
     });
 });
+
 
 export const refreshToken = asyncHandler(async (req, res) => {
   const oldRefreshToken = req.cookies?.refreshToken;
