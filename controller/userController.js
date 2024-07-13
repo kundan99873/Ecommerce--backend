@@ -22,10 +22,10 @@ const generateToken = async (id) => {
 };
 
 const option = {
-  httpOnly: false,
+  httpOnly: true,
   maxAge: 7 * 24 * 60 * 60 * 1000,
-  secure: false,
-  sameSite: "None",
+  secure: true,
+  sameSite: "lax",
 
 };
 
@@ -123,10 +123,10 @@ export const login = asyncHandler(async (req, res) => {
 
   return res
     .cookie("accessToken", accessToken, {
-    httpOnly: false,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    secure: false,
-    sameSite: "None",
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000,
+      secure: true,
+      sameSite: "lax",
     })
     .cookie("refreshToken", refreshToken, option)
     .status(200)
