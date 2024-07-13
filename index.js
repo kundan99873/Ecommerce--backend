@@ -36,10 +36,6 @@ cloudinary.v2.config({
   api_secret: process.env.API_SECRET,
 });
 
-app.use(express.static(path.resolve(__dirname, "front", "build")));
-  app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "front", "build", "index.html"));
-  });
 
 connection();
 
