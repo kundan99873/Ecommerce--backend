@@ -22,11 +22,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
+const corsOptions = {
+  origin: 'https://ecommerce-chi-henna-19.vercel.app',
+  credentials: true, // Allow credentials (cookies)
+};
 app.use(
-  cors({
-    origin: "https://ecommerce-chi-henna-19.vercel.app",
-    credentials: true,
-  })
+  cors(corsOptions)
 );
 app.use(morgan("tiny"));
 
