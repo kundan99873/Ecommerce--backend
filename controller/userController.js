@@ -22,8 +22,11 @@ const generateToken = async (id) => {
 };
 
 const option = {
-  httpOnly: true,
+  httpOnly: false,
   maxAge: 7 * 24 * 60 * 60 * 1000,
+  secure: false,
+  sameSite: "None",
+
 };
 
 const secret = process.env.SECRET;
@@ -120,8 +123,10 @@ export const login = asyncHandler(async (req, res) => {
 
   return res
     .cookie("accessToken", accessToken, {
-      httpOnly: true,
-      maxAge: 60 * 60 * 1000,
+    httpOnly: false,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    secure: false,
+    sameSite: "None",
     })
     .cookie("refreshToken", refreshToken, option)
     .status(200)
