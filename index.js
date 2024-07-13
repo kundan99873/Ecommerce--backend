@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: "https://ecommerce-chi-henna-19.vercel.app",
     credentials: true,
   })
 );
