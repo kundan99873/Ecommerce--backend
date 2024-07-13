@@ -25,7 +25,7 @@ const option = {
   httpOnly: true,
   maxAge: 7 * 24 * 60 * 60 * 1000,
   secure: true,
-  sameSite: "None",
+  sameSite: "lax",
 
 };
 
@@ -126,7 +126,7 @@ export const login = asyncHandler(async (req, res) => {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
       secure: true,
-      sameSite: "None",
+      sameSite: "lax",
     })
     .cookie("refreshToken", refreshToken, option)
     .status(200)
